@@ -49,7 +49,7 @@ public static partial class Shared {
 #if DEBUG
             return true;
 #endif
-            return true;
+            return false;
         }
     }
 
