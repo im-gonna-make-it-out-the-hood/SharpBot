@@ -88,7 +88,6 @@ public class RangeIdScanner : IDiscordCommand {
 
             var timeTakenToRunToCompletion = watch.Elapsed;
 
-            //FIXME: FIX SYNCHRONIZATION ISSUES! MASSIVE TODO:
             await restResponse.ModifyAsync(x =>
                 x.Content =
                     $"Scan completed. Your file will be available soon, as it is being uploaded...\n\nRequest Information:\nTime Taken Generating IDs: {timeTakenOnIdGeneration.TotalMilliseconds}ms\nTime Taken obtaining data: {timeTakenToRunToCompletion.TotalMilliseconds}ms\nTotal time elapsed: {(timeTakenOnIdGeneration + timeTakenToRunToCompletion).TotalMilliseconds}ms");
