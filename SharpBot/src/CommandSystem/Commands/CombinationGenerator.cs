@@ -14,7 +14,9 @@ public class CombinationGenerator : IDiscordCommand {
         await commandSocket.DeferAsync();
 
         var combinationSource = ((string)commandSocket.Data.Options.ElementAt(0).Value).Split(',');
-        var combinationSizeLimit = (long?)commandSocket.Data.Options.ElementAt(1).Value ?? 128;
+        var combinationSizeLimit = commandSocket.Data.Options.Count > 1
+            ? (long)commandSocket.Data.Options.ElementAt(1).Value
+            : 128;
 
         if (Math.Pow(combinationSource.Length, 2) >= 2_000_000) {
             _ = await commandSocket.FollowupAsync(embed: new EmbedBuilder {

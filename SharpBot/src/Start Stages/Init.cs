@@ -8,7 +8,7 @@ public sealed partial class StartStage {
     /// <summary>
     ///     The servers where the developers are in (Used mainly for development lmao).
     /// </summary>
-    private static readonly ulong[] devServers = { 928820917495291965, };
+    private static readonly ulong[] devServers = { 928820917495291965 };
 
     public async Task Initialization(PreInit preInitialization) {
         AnsiConsole.MarkupLine("[maroon][[Init/INFO]] Running [green]Initialization[/].[/]");

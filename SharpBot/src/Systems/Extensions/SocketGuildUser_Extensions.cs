@@ -19,6 +19,6 @@ public static class SocketGuildUser_Extensions {
 
 
         // If the user has none, return 4 tasks max!
-        return 64;
+        return 4;
     }
 }
