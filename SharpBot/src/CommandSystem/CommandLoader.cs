@@ -7,7 +7,7 @@ internal static class CommandLoader {
     public static CommandHelper LoadCommands(CommandHelper cmdHelper) {
         cmdHelper.AddToCommandList(Ping.GlobalInstance);
         cmdHelper.AddToCommandList(CombinationGenerator.GlobalInstance);
-        //cmdHelper.AddToCommandList(RangeIdScanner.GlobalInstance);
+        cmdHelper.AddToCommandList(RangeIdScanner.GlobalInstance);
         
         return cmdHelper;
     }

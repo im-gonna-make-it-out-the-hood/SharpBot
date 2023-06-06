@@ -43,19 +43,16 @@ public class RangeIdScanner : IDiscordCommand {
 
         var thread = new Thread(async () => {
             var socketSlashCommand = commandSocket;
-            const int preferableIdPerThread = 75;
             var estimatedTime =
-                TimeSpan.FromMilliseconds(5000 * Random.Shared.Next(5) * rangeSize);
+                TimeSpan.FromMilliseconds(3500 * Random.Shared.Next(5) * rangeSize);
             var restResponse = await socketSlashCommand.FollowupAsync(
                 $"Scan in progress, we are scanning the range you have given us, please wait. Processing {rangeSize} ids... | This operation may take somewhere around {estimatedTime.TotalSeconds} seconds, or {estimatedTime.TotalMinutes} minutes! (Worst case scenario)");
 
             await Task.Delay(Random.Shared.Next(2500, 5000));
-            
+
             const string RobloxUsersAPI_POST = "https://users.roblox.com/v1/users";
             var IdList = new List<long>((int)rangeSize);
             var semaphore_Synchronizer = new SemaphoreSlim(1);
-            var minimalUserList = new List<RobloxMinimalUser>((int)rangeSize);
-
             var PendingRequests = new ConcurrentBag<HttpRequestMessage>();
 
             var watch = Stopwatch.StartNew();
@@ -82,7 +79,7 @@ public class RangeIdScanner : IDiscordCommand {
             Console.WriteLine(
                 $"[Range Scanner] INFO: Calling scanner code with a parallelism of {maxDegreeOfParallelism}, auto adjust if required enabled!");
             watch.Restart();
-            await ValidateIdRange.VerifyUsers(maxDegreeOfParallelism, IdList, true);
+            var minimalUserList = (await ValidateIdRange.VerifyUsers(maxDegreeOfParallelism, IdList, true)).ToList();
             watch.Stop();
             Console.WriteLine("[Range Scanner] INFO: Threads have completed their workload.");
 

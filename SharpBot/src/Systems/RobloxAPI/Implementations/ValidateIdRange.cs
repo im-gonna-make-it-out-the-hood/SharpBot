@@ -220,10 +220,11 @@ public class ValidateIdRange {
                             Console.WriteLine($"Server response: {stringResponse}");
                             Console.WriteLine(response.RequestMessage.Content.ReadAsStringAsync().GetAwaiter()
                                                       .GetResult());
-                            succeededRequest = false;
-                            reInitProxiedClient = true;
-                            continue;
                         }
+                        succeededRequest = false;
+                        reInitProxiedClient = true;
+                        Console.WriteLine($"Alternative parse failure! Response: {stringResponse}");
+                        continue;
                     }
                 }
 
