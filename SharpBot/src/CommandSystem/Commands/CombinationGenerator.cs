@@ -69,7 +69,7 @@ public class CombinationGenerator : IDiscordCommand {
                     await writer.WriteAsync(currentTarget);
 
                     if (baseWord.Length + currentTarget.Length > combinationSizeLimit) {
-                        await writer.WriteAsync("// Generation skipped, too long for what was set in arguments!");
+                        await writer.WriteAsync("\n// Generation skipped, too long for what was set in arguments!\n");
                         continue;
                     }
 
