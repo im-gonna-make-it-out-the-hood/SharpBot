@@ -65,7 +65,6 @@ public class CombinationGenerator : IDiscordCommand {
 
                     if (currentTarget == baseWord) continue; // Skip is same word.
 
-                    await writer.WriteAsync(baseWord);
                     await writer.WriteAsync(currentTarget);
 
                     if (baseWord.Length + currentTarget.Length > combinationSizeLimit) {
