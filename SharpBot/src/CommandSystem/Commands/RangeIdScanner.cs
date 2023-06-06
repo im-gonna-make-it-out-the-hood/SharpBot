@@ -32,11 +32,13 @@ public class RangeIdScanner : IDiscordCommand {
             return; // Preemptive return, the user gave us an invalid range of IDs.
         }
 
-        if (rangeSize > 30000) {
+        const int maxSizeOfRange = 10000;
+        
+        if (rangeSize > maxSizeOfRange) {
             await commandSocket.FollowupAsync(embed: new EmbedBuilder {
                 Title = "Too many IDs!",
                 Description =
-                    "The bot is unable to scan the range of user ids, they are more than 30000 ids to scan! Please reduce your range."
+                    $"The bot is unable to scan the range of user ids, they are more than {maxSizeOfRange} ids to scan! Please reduce your range!"
             }.Build());
             return;
         }
